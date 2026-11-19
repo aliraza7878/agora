@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: dark; }
+html, body, #root { min-height: 100%; }
+body {
+  @apply bg-ink text-parchment font-sans antialiased;
+  background-image:
+    radial-gradient(900px 500px at 15% -10%, rgba(130,116,219,0.10), transparent 60%),
+    radial-gradient(800px 500px at 90% 0%, rgba(200,165,91,0.07), transparent 60%);
+  background-attachment: fixed;
+}
+::selection { background: rgba(200,165,91,0.35); }
+:focus-visible { outline: 2px solid #C8A55B; outline-offset: 2px; }
+
+@layer components {
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-sm px-5 py-2.5 text-sm font-medium transition-colors disabled:opacity-40 disabled:cursor-not-allowed; }
+  .btn-gold { @apply bg-gold text-ink hover:bg-[#d8b66b]; }
+  .btn-line { @apply border border-line text-parchment hover:border-gold hover:text-gold; }
+  .btn-ghost { @apply text-mute hover:text-parchment; }
+  .field { @apply w-full rounded-sm border border-line bg-vault px-3 py-2 text-sm text-parchment placeholder:text-mute/60 focus:border-gold focus:outline-none; }
+  .h-display { @apply font-serif font-medium tracking-tight text-parchment; }
+  .prose-arg { @apply font-serif text-[1.12rem] leading-[1.75] text-parchment/95; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+.caret::after { content: '▍'; margin-left: 2px; color: #C8A55B; animation: blink 1s steps(2) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
